@@ -1,0 +1,7 @@
+{
+  "warehouse": "bigquery",
+  "defaultDatabase": "crypto-etl-project-465203",
+  "defaultSchema": "dataform",
+  "assertionSchema": "assertions",
+  "defaultLocation": "asia-southeast1"
+}

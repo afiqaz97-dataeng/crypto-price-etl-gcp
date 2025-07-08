@@ -19,8 +19,8 @@ crypto-price-etl-gcp/
 │   └── definitions/               # Compilable SQLX models
 │       └── curated_btc_prices.sqlx
 │
-├── deploy/                        # Deployment YAMLs/scripts
-│   └── cloudfunction_build.yaml   # (Optional) For automated builds
+├── deploy/                        # Deployment YAMLs/scripts for cloud function and cloud builds
+│   └── deploy.yaml   # (Optional) For automated builds
 │
 └── sql/                           # SQL files for manual execution
     ├── 01_create_dataset.sql      # Creates the BigQuery dataset

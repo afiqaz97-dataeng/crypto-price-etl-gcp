@@ -39,39 +39,40 @@ def fetch_btc_price(request=None):
         "price_usd": simulated_prices.astype("float64")
         })
 
-        
-        df_check_data = df.tail()
+        #  To test or debug in local
+        # df_check_data = df.tail()
 
         print(f"✅ Simulated {len(df)} BTC records")
-        print (df_check_data)
+        #  To test or debug in local
+        # print (df_check_data)
         
 
-    #     # Convert to Parquet using pyarrow
-    #     table = pa.Table.from_pandas(df)
-    #     parquet_buffer = BytesIO()
-    #     pq.write_table(table, parquet_buffer)
+        # Convert to Parquet using pyarrow
+        table = pa.Table.from_pandas(df)
+        parquet_buffer = BytesIO()
+        pq.write_table(table, parquet_buffer)
 
-    #     # Upload to GCS
-    #     today = datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%d_%H%M%S')
-    #     bucket_name = "crypto-etl-bucket-af"  # replace if needed
-    #     filename = f"staging/btc_price_{today}.parquet"
+        # Upload to GCS
+        today = datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%d_%H%M%S')
+        bucket_name = "crypto-etl-bucket-af"  # replace if needed
+        filename = f"staging/btc_price_{today}.parquet"
 
-    #     storage_client = storage.Client()
-    #     bucket = storage_client.bucket(bucket_name)
-    #     blob = bucket.blob(filename)
-    #     blob.upload_from_string(parquet_buffer.getvalue(), content_type="application/octet-stream")
+        storage_client = storage.Client()
+        bucket = storage_client.bucket(bucket_name)
+        blob = bucket.blob(filename)
+        blob.upload_from_string(parquet_buffer.getvalue(), content_type="application/octet-stream")
 
-    #     print(f" Uploaded {filename} to GCS")
-    #     return f"Uploaded {len(df)} records to {filename}", 200
+        print(f" Uploaded {filename} to GCS")
+        return f"Uploaded {len(df)} records to {filename}", 200
 
     except Exception as e:
         print(f"[ERROR] {e}")
         return f"Error: {e}", 500
     
-# To test script in local 
-if __name__ == "__main__":
-    class DummyRequest:
-        def __init__(self):
-            self.args = {}
+# # To test script in local 
+# if __name__ == "__main__":
+#     class DummyRequest:
+#         def __init__(self):
+#             self.args = {}
 
-    print(fetch_btc_price(DummyRequest()))
+#     print(fetch_btc_price(DummyRequest()))

@@ -109,7 +109,7 @@ from
 
 ## 🔐 GitHub + Dataform Integration
 
-- Created [Fine-Grained Personal Access Token](https://github.com/settings/tokens)
+- Created [Fine-Grained Personal Access Token]
 - Granted `Contents: Read & Write` on selected repo
 - Stored securely in **GCP Secret Manager**
 - Linked in Dataform for remote Git repo sync

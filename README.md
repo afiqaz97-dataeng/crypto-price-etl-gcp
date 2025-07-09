@@ -125,14 +125,7 @@ Once deployed, you’ll have:
 | `btc_price_external`       | External Table | Raw Parquet data from GCS           |
 | `curated_btc_prices`       | Table (SQLX)   | Transformed table using Dataform    |
 
----
 
-## 📅 Coming Next
-
-- Add Dataform assertions (e.g., not null, freshness)
-- Schedule transformations with Dataform scheduler
-- Optional: Airflow or Cloud Composer orchestration
-- Optional: Use Pub/Sub or Eventarc for event-driven ETL
 
 ---
 

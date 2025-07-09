@@ -39,6 +39,9 @@ def fetch_btc_price(request=None):
         "price_usd": [float(price)] * 10000  # <-- force float
         })
 
+        df["price_usd"] = df["price_usd"].astype(float)
+
+
         print(f"✅ Simulated {len(df)} BTC records")
 
         # Convert to Parquet using pyarrow

@@ -6,6 +6,7 @@ import pyarrow.parquet as pq
 from google.cloud import storage
 import os
 from io import BytesIO
+import numpy as np
 
 def fetch_btc_price(request=None):
     try:
@@ -28,11 +29,15 @@ def fetch_btc_price(request=None):
         # Simulate 10,000 records by generating timestamps
         now = datetime.datetime.now(datetime.timezone.utc)
         timestamps = [now - datetime.timedelta(seconds=60 * i) for i in range(10000)]
-        df = pd.DataFrame({
-            "timestamp": timestamps,
-            "price_usd": [price] * 10000
-        })
+        # Simulate realistic fluctuation around the fetched price
+        np.random.seed(42)
+        price_fluctuations = np.random.normal(loc=0, scale=30, size=10000)  # ±$30 variance
+        simulated_prices = np.round(price + price_fluctuations, 2)
 
+        df = pd.DataFrame({
+        "timestamp": timestamps,
+        "price_usd": simulated_prices
+        })
         print(f"✅ Simulated {len(df)} BTC records")
 
         # Convert to Parquet using pyarrow
@@ -57,10 +62,10 @@ def fetch_btc_price(request=None):
         print(f"[ERROR] {e}")
         return f"Error: {e}", 500
     
-# To test script in local 
-if __name__ == "__main__":
-    class DummyRequest:
-        def __init__(self):
-            self.args = {}
+# # To test script in local 
+# if __name__ == "__main__":
+#     class DummyRequest:
+#         def __init__(self):
+#             self.args = {}
 
-    print(fetch_btc_price(DummyRequest()))
+#     print(fetch_btc_price(DummyRequest()))

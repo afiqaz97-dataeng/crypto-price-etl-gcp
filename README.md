@@ -14,17 +14,20 @@ crypto-price-etl-gcp/
 │   ├── main.py                    # Entry-point script to fetch and upload BTC data
 │   └── requirements.txt           # Dependencies for cloud function
 │
-├── dataform/                      # Dataform repo for transformation
-│   ├── dataform.json              # Project config
-│   └── definitions/               # Compilable SQLX models
-│       └── curated_btc_prices.sqlx
+├── definitions/                    # Dataform repo for transformation              
+│   └── curated_btc_prices.sqlx     # Compilable SQLX models
 │
 ├── deploy/                        # Deployment YAMLs/scripts for cloud function and cloud builds
 │   └── deploy.yaml   # (Optional) For automated builds
 │
 └── sql/                           # SQL files for manual execution
-    ├── 01_create_dataset.sql      # Creates the BigQuery dataset
-    └── 02_create_external_table.sql # Creates external table from Parquet in GCS
+|    ├── 01_create_dataset.sql     # Creates the BigQuery dataset
+|    └── 02_create_external_table.sql # Creates external table from Parquet in GCS
+|
+└── .gitignore                    # ignore cache when pushing to the git
+└──  README.md                    # Documentation of Projects
+└── workflow_settings.yaml        # Configuration and packages file for dataform transformation
+
 ```
 
 ---

@@ -36,8 +36,9 @@ def fetch_btc_price(request=None):
 
         df = pd.DataFrame({
         "timestamp": timestamps,
-        "price_usd": simulated_prices
+        "price_usd": [float(price)] * 10000  # <-- force float
         })
+
         print(f"✅ Simulated {len(df)} BTC records")
 
         # Convert to Parquet using pyarrow

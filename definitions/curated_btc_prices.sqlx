@@ -8,7 +8,8 @@ config {
 SELECT
   TO_HEX(SHA256(CONCAT(CAST(timestamp AS STRING), CAST(price_usd AS STRING)))) AS unique_id,
   timestamp,
-  ROUND(price_usd, 2) AS price_usd
+  ROUND(price_usd, 2) AS price_usd,
+  Current_timestamp() Last_Data_Refresh
 FROM
   `crypto-etl-project-465203.staging_crypto.ext_btc_price_parquet`
 WHERE

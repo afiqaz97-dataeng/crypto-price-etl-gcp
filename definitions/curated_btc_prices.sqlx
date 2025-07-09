@@ -1,5 +1,6 @@
 config {
   type: "table",
+  schema: "curated_crypto",
   tags: ["btc", "clean"],
   description: "Curated BTC price data transformed from external parquet source"
 }
@@ -8,7 +9,7 @@ SELECT
   TO_HEX(SHA256(CONCAT(CAST(timestamp AS STRING), CAST(price_usd AS STRING)))) AS unique_id,
   timestamp,
   ROUND(price_usd, 2) AS price_usd
-FROM 
-    `crypto-etl-project-465203.staging_crypto.ext_btc_price_parquet`
+FROM
+  `crypto-etl-project-465203.staging_crypto.ext_btc_price_parquet`
 WHERE
   price_usd IS NOT NULL

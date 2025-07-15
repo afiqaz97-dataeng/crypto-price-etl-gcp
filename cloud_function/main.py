@@ -69,6 +69,9 @@ def fetch_btc_price(request=None):
         print(f"[ERROR] {e}")
         return f"Error: {e}", 500
     
+# Trigger test update
+
+
 # # To test script in local 
 # if __name__ == "__main__":
 #     class DummyRequest:

@@ -1,18 +1,16 @@
 steps:
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: bash
+    entrypoint: gcloud
     args:
-      - -c
-      - |
-        gcloud functions deploy fetch_btc_price_function \
-          --region=asia-southeast1 \
-          --runtime=python310 \
-          --entry-point=main \
-          --trigger-http \
-          --source=cloud_function \
-          --allow-unauthenticated \
-          --memory=512MB \
-          --timeout=540s \
-          --service-account=cloudbuild-deployer@crypto-etl-project-465203.iam.gserviceaccount.com
+      - functions
+      - deploy
+      - fetch-btc-price  # <-- your function name
+      - --runtime=python310
+      - --trigger-http
+      - --entry-point=main
+      - --source=cloud_function/
+      - --region=asia-southeast1
+      - --allow-unauthenticated
 
-timeout: 900s
+options:
+  logging: CLOUD_LOGGING_ONLY
